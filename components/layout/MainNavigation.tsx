@@ -123,16 +123,22 @@ function MainNavigation() {
 	const onChangeDateHandler = (date) => {
 		setStartDate(date);
 
-		const additionalDays = daysBetween(startDate, date);
-		console.log(additionalDays);
+		let additionalDays = daysBetween(startDate, date);
+		const newData = [...appCtx.products];
+		const gildedRoseClass = new GildedRose(newData);
+		const nextDay = additionalDays > 0;
 
-		// todo: make it work
-		let newData = [...appCtx.products];
-		// for (let i = 0; i < days; i++) {
-		// 	newData = updateQuality(newData);
-		// }
-		const newProductsList = new GildedRose(newData).updateQuality();
-		appCtx.setProducts(newProductsList);
+		// console.log('additionalDays: ', additionalDays);
+
+		while (additionalDays != 0) {
+			if (additionalDays != 0) {
+				console.log('additionalDays: ', additionalDays);
+				const newProductsList = gildedRoseClass.updateQuality(nextDay);
+				appCtx.setProducts(newProductsList);
+			}
+
+			additionalDays -= additionalDays > 0 ? 1 : -1;
+		}
 	};
 
 	let setMenuContent;

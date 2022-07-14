@@ -140,7 +140,7 @@ function MainNavigation() {
 	if (router.asPath == '/cart') {
 		setMenuContent = <Link href="/">Products</Link>;
 	} else {
-		setMenuContent = <DatePicker selected={startDate} onChange={onChangeDateHandler} minDate={subDays(new Date(), 0)} customInput={<DateCustomInput />} />;
+		setMenuContent = <DatePicker selected={startDate} onChange={onChangeDateHandler} shouldCloseOnSelect={false} minDate={subDays(new Date(), 0)} customInput={<DateCustomInput />} />;
 	}
 
 	return (

@@ -83,7 +83,7 @@ function ProductItem(props) {
 						<span>{product.quality}</span>
 					</div>
 					<div>
-						<strong>Due date: </strong>
+						<strong>Days left: </strong>
 						<span>{product.sellIn}</span>
 					</div>
 				</ContentContainer>

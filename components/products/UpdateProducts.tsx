@@ -44,7 +44,7 @@ export class GildedRose {
 
 			// quality calc
 			let removeQuality = isConjured ? 2 : 1;
-			let addBackStagePassesQuality = item.sellIn < 6 ? 2 : item.sellIn < 11 ? 1 : 0;
+			let addBackStagePassesQuality = item.sellIn < (nextDay ? 6 : 5) ? 2 : item.sellIn < (nextDay ? 11 : 10) ? 1 : 0;
 
 			// reverse value if it's previous day
 			removeQuality *= indexDay;
@@ -52,22 +52,24 @@ export class GildedRose {
 
 			// set quality
 			item.qualityRaw = item.type == 'vintage' ? item.qualityRaw + indexDay : item.qualityRaw; // increase quality
-			item.qualityRaw = item.type != 'legendary' && item.type != 'vintage' ? item.qualityRaw - removeQuality : item.qualityRaw; // decrease quality
+			item.qualityRaw = item.type == 'regular' ? item.qualityRaw - removeQuality : item.qualityRaw; // decrease quality
 			item.qualityRaw = isBackStagePasses ? item.qualityRaw + addBackStagePassesQuality : item.qualityRaw;
 
 			// set sellIn date
 			item.sellIn -= !isSulfuras ? indexDay : 0;
 
 			// expired items
-			item.qualityRaw = item.sellIn < 0 && isBackStagePasses ? 0 : item.qualityRaw;
-			item.qualityRaw += item.sellIn < 0 && isAgedBrie ? indexDay : 0;
-			item.qualityRaw = item.sellIn < 0 && item.type == 'regular' ? item.qualityRaw - indexDay : item.qualityRaw;
+			const expiredForward = item.sellIn < 0;
+			const expired = nextDay ? expiredForward : item.sellIn < 1;
+			item.qualityRaw += expired && isAgedBrie ? indexDay : 0;
+			item.qualityRaw = expired && item.type == 'regular' ? item.qualityRaw - indexDay : item.qualityRaw;
 
 			// set limits for visible values
 			item.quality = item.type == 'vintage' ? Math.min(item.qualityRaw, 50) : item.qualityRaw;
-			item.quality = item.type != 'legendary' && item.type != 'vintage' ? Math.max(0, item.qualityRaw) : item.qualityRaw;
-			item.quality = isBackStagePasses ? Math.min(item.qualityRaw, 50) : item.qualityRaw;
-			item.quality = item.sellIn < 0 && item.type == 'regular' ? Math.max(item.qualityRaw, 0) : item.qualityRaw;
+			item.quality = item.type == 'regular' ? Math.max(0, item.qualityRaw) : item.quality;
+			item.quality = isBackStagePasses ? Math.min(item.qualityRaw, 50) : item.quality;
+			item.quality = expiredForward && isBackStagePasses ? 0 : item.quality;
+			item.quality = expiredForward && item.type == 'regular' ? Math.max(item.qualityRaw, 0) : item.quality;
 		});
 
 		return this.items;

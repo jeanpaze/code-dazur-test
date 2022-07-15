@@ -8,6 +8,7 @@ import { GildedRose, ItemExtra } from '../../components/products/UpdateProducts'
 import { CgShoppingCart } from 'react-icons/cg';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Colors from '../layout/Theme';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -20,7 +21,7 @@ const HeaderContainer = styled.header`
 	align-items: center;
 	justify-content: space-between;
 	white-space: nowrap;
-	background-color: #063970;
+	background-color: ${Colors.fullContrast};
 	padding: 0 10%;
 `;
 
@@ -40,7 +41,7 @@ const NavigationContainer = styled.nav`
 	& a {
 		text-decoration: none;
 		font-size: 1.5rem;
-		color: #abdbe3;
+		color: ${Colors.midContrast};
 	}
 
 	& a:hover,
@@ -49,17 +50,17 @@ const NavigationContainer = styled.nav`
 	& .resetButtonStyle:hover,
 	& .resetButtonStyle:active,
 	& .resetButtonStyle.active {
-		color: white;
+		color: ${Colors.highlight};
 
 		& svg {
-			color: white;
+			color: ${Colors.highlight};
 		}
 	}
 
 	& .resetButtonStyle {
 		cursor: pointer;
 		font-size: 1.5rem;
-		color: #abdbe3;
+		color: ${Colors.midContrast};
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -71,7 +72,7 @@ const NavigationContainer = styled.nav`
 		outline: none;
 
 		& svg {
-			color: #abdbe3;
+			color: ${Colors.midContrast};
 		}
 	}
 `;
@@ -84,7 +85,7 @@ const CartButtonContainer = styled.button`
 	& svg {
 		width: 27px;
 		height: 27px;
-		color: white;
+		color: ${Colors.highlight};
 	}
 `;
 
@@ -93,14 +94,14 @@ const BadgeContainer = styled.div`
 	height: 15px;
 	margin-left: -8px;
 	border-radius: 100%;
-	background-color: red;
+	background-color: ${Colors.badge};
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
 	& strong {
-		color: white;
+		color: ${Colors.highlight};
 		font-size: 0.5rem;
 	}
 `;
@@ -110,8 +111,9 @@ const MainNavigation = () => {
 	const [startDate, setStartDate] = useState(new Date());
 	const router = useRouter();
 
-	const DateCustomInput = forwardRef(({ onClick }, ref) => (
-		<button className="resetButtonStyle" onClick={onClick} ref={ref}>
+	// eslint-disable-next-line react/display-name
+	const DateCustomInput = forwardRef<HTMLButtonElement>((props: any, ref) => (
+		<button className="resetButtonStyle" onClick={props.onClick} ref={ref}>
 			Set Date
 		</button>
 	));
@@ -130,7 +132,6 @@ const MainNavigation = () => {
 
 		while (additionalDays != 0) {
 			if (additionalDays != 0) {
-				console.log('additionalDays: ', additionalDays);
 				const newProductsList: ItemExtra[] = gildedRoseClass.updateQuality(nextDay);
 				appCtx.setProducts(newProductsList);
 			}

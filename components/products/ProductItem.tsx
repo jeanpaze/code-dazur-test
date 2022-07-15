@@ -4,6 +4,7 @@ import AppContext from '../../store/AppContext';
 import Card from '../ui/Card';
 import { ItemExtra } from './UpdateProducts';
 import { motion, Variants } from 'framer-motion';
+import Colors from '../layout/Theme';
 
 const ListItemContainer = styled.li`
 	margin: 0.55rem 0;
@@ -29,7 +30,7 @@ const ContentContainer = styled(motion.div)`
 
 	& h3 {
 		font-size: 1.25rem;
-		color: #2c292b;
+		color: ${Colors.textContent};
 		line-height: 1.3em;
 	}
 
@@ -45,8 +46,8 @@ const ActionsContainer = styled(motion.div)`
 	& button {
 		font: inherit;
 		cursor: pointer;
-		color: #063970;
-		border: 1px solid #063970;
+		color: ${Colors.fullContrast};
+		border: 1px solid ${Colors.fullContrast};
 		background-color: transparent;
 		padding: 0.5rem 1.5rem;
 		border-radius: 4px;
@@ -54,7 +55,7 @@ const ActionsContainer = styled(motion.div)`
 
 	& button:hover,
 	& button:active {
-		background-color: #abdbe3;
+		background-color: ${Colors.midContrast};
 	}
 `;
 
@@ -103,7 +104,7 @@ const ProductItem = (props) => {
 		<ListItemContainer>
 			<Card>
 				<ImageContainer>
-					<img src={product.image} alt={product.title} />
+					<motion.img src={product.image} alt={product.name} />
 				</ImageContainer>
 				<ContentContainer variants={contentVariants} initial="hidden" animate="show">
 					<motion.h3 variants={contentItemVariants}>{product.name}</motion.h3>

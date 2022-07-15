@@ -8,7 +8,8 @@ function HomePage(props) {
 		<Fragment>
 			<Head>
 				<title>Shop</title>
-				<meta name="description" content="Products" />
+				<meta name="description" content="We buy and sell only the finest goods." />
+				<link rel="icon" href="/favicon.svg" />
 			</Head>
 			<ProductsPage />
 		</Fragment>

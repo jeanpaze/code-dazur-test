@@ -8,7 +8,8 @@ function CartPage(props) {
 		<Fragment>
 			<Head>
 				<title>Shop - Cart</title>
-				<meta name="description" content="Cart" />
+				<meta name="description" content="My shopping cart" />
+				<link rel="icon" href="/favicon.svg" />
 			</Head>
 			<CartProductsPage />
 		</Fragment>

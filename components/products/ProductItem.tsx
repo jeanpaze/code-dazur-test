@@ -79,11 +79,11 @@ function ProductItem(props) {
 				<ContentContainer>
 					<h3>{product.name}</h3>
 					<div>
-						<strong>Quality: </strong>
+						<strong>Quality </strong>
 						<span>{product.quality}</span>
 					</div>
 					<div>
-						<strong>Days left: </strong>
+						<strong>Days left </strong>
 						<span>{product.sellIn}</span>
 					</div>
 				</ContentContainer>

@@ -32,8 +32,12 @@ export class GildedRose {
 	}
 
 	updateQuality(nextDay) {
+		const indexDay = nextDay ? 1 : -1;
+		const backStagePassesAdditionalIncDay = nextDay ? 11 : 10;
+		const backStagePassesExtraIncDay = nextDay ? 6 : 5;
+
 		this.items.forEach((item) => {
-			const indexDay = nextDay ? 1 : -1;
+			// define specific items
 			const isBackStagePasses = item.name.toLowerCase().includes('backstage passes');
 			const isSulfuras = item.name.toLowerCase().includes('sulfuras');
 			const isAgedBrie = item.name.toLowerCase().includes('aged brie');
@@ -44,7 +48,7 @@ export class GildedRose {
 
 			// quality calc
 			let removeQuality = isConjured ? 2 : 1;
-			let addBackStagePassesQuality = item.sellIn < (nextDay ? 6 : 5) ? 2 : item.sellIn < (nextDay ? 11 : 10) ? 1 : 0;
+			let addBackStagePassesQuality = item.sellIn < backStagePassesExtraIncDay ? 2 : item.sellIn < backStagePassesAdditionalIncDay ? 1 : 0;
 
 			// reverse value if it's previous day
 			removeQuality *= indexDay;

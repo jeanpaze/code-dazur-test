@@ -1,41 +1,50 @@
 import { createContext, useState } from 'react';
+import { ItemExtra } from '../components/products/UpdateProducts';
+export interface AppContextType {
+	cartProducts: string[];
+	totalCart: number;
+	addCart: (productItem: ItemExtra) => void;
+	removeCart: (productId: string) => void;
+	inCart: (productId: string) => boolean;
+	products: ItemExtra[];
+	setProducts: (productsList: ItemExtra[]) => void;
+}
 
-const AppContext = createContext({
+const AppContext = createContext<AppContextType>({
 	cartProducts: [],
 	totalCart: 0,
 	addCart: (productItem) => {},
 	removeCart: (productId) => {},
-	inCart: (productId) => {},
+	inCart: (productId) => false,
 	products: [],
 	setProducts: (productsList) => {},
-	productsClass: {},
 });
 
-export function AppContextProvider(props) {
+export const AppContextProvider = (props) => {
 	const [userCart, setUserCart] = useState([]);
 	const [productsList, setProductsList] = useState([]);
 
-	function addCartHandler(productItem) {
+	const addCartHandler = (productItem) => {
 		setUserCart((prevUserCart) => {
 			return prevUserCart.concat(productItem);
 		});
-	}
+	};
 
-	function removeCartHandler(productId) {
+	const removeCartHandler = (productId) => {
 		setUserCart((prevUserCart) => {
 			return prevUserCart.filter((productItem) => productItem.id !== productId);
 		});
-	}
+	};
 
-	function inCartHandler(productId) {
+	const inCartHandler = (productId) => {
 		return userCart.some((productItem) => productItem.id === productId);
-	}
+	};
 
-	function setProductsHandler(productsList) {
+	const setProductsHandler = (productsList) => {
 		setProductsList(productsList);
-	}
+	};
 
-	const context = {
+	const context: AppContextType = {
 		cartProducts: userCart,
 		totalCart: userCart.length,
 		addCart: addCartHandler,
@@ -46,6 +55,6 @@ export function AppContextProvider(props) {
 	};
 
 	return <AppContext.Provider value={context}>{props.children}</AppContext.Provider>;
-}
+};
 
 export default AppContext;

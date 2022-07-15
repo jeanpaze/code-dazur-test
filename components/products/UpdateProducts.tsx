@@ -3,7 +3,6 @@ export class Item {
 	sellIn: number;
 	quality: number;
 
-// @ts-expect-error TS(7006): Parameter 'name' implicitly has an 'any' type.
 	constructor(name, sellIn, quality) {
 		this.name = name;
 		this.sellIn = sellIn;
@@ -12,16 +11,11 @@ export class Item {
 }
 
 export class ItemExtra extends Item {
-// @ts-expect-error TS(2564): Property 'id' has no initializer and is not defini... Remove this comment to see the full error message
 	id: number;
-// @ts-expect-error TS(2564): Property 'type' has no initializer and is not defi... Remove this comment to see the full error message
 	type: string;
-// @ts-expect-error TS(2564): Property 'image' has no initializer and is not def... Remove this comment to see the full error message
 	image: string;
-// @ts-expect-error TS(7008): Member 'number' implicitly has an 'any' type.
-	qualityRaw: any: number;
+	qualityRaw: number;
 
-// @ts-expect-error TS(7006): Parameter 'id' implicitly has an 'any' type.
 	super(id, type, image, qualityRaw) {
 		this.id = id;
 		this.type = type;
@@ -37,7 +31,6 @@ export class GildedRose {
 		this.items = items;
 	}
 
-// @ts-expect-error TS(7006): Parameter 'nextDay' implicitly has an 'any' type.
 	updateQuality(nextDay) {
 		const indexDay = nextDay ? 1 : -1;
 		const backStagePassesAdditionalIncDay = nextDay ? 11 : 10;

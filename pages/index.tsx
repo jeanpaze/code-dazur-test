@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 
 import ProductsPage from '../components/products/ProductsPage';
 
-function HomePage(props) {
+const HomePage = (props) => {
 	return (
 		<Fragment>
 			<Head>
@@ -14,6 +14,6 @@ function HomePage(props) {
 			<ProductsPage />
 		</Fragment>
 	);
-}
+};
 
 export default HomePage;

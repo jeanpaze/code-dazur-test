@@ -2,7 +2,7 @@ import Layout from '../components/layout/Layout';
 import { AppContextProvider } from '../store/AppContext';
 import '../styles/global.css';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
 	return (
 		<AppContextProvider>
 			<Layout>
@@ -10,6 +10,6 @@ function MyApp({ Component, pageProps }) {
 			</Layout>
 		</AppContextProvider>
 	);
-}
+};
 
 export default MyApp;

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 
 import CartProductsPage from '../../components/products/CartProductsPage';
 
-function CartPage(props) {
+const CartPage = (props) => {
 	return (
 		<Fragment>
 			<Head>
@@ -14,6 +14,6 @@ function CartPage(props) {
 			<CartProductsPage />
 		</Fragment>
 	);
-}
+};
 
 export default CartPage;

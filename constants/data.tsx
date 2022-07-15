@@ -1,3 +1,4 @@
+// not being used anymore. Everything is being fetch from mongodb api
 export const DUMMY_DATA = [
 	{
 		id: 'product-1',

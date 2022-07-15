@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
+// @ts-expect-error TS(6142): Module '../../store/AppContext' was resolved to '/... Remove this comment to see the full error message
 import AppContext from '../../store/AppContext';
+// @ts-expect-error TS(6142): Module '../ui/Card' was resolved to '/Users/jean/D... Remove this comment to see the full error message
 import Card from '../ui/Card';
 
 const ListItemContainer = styled.li`
@@ -57,37 +59,53 @@ const ActionsContainer = styled.div`
 	}
 `;
 
+// @ts-expect-error TS(7006): Parameter 'props' implicitly has an 'any' type.
 function ProductItem(props) {
 	const appCtx = useContext(AppContext);
-	const inCart = appCtx.inCart(props.id);
-	const product = appCtx.products.find((productItem) => productItem.id === props.id);
+	const inCart = (appCtx as any).inCart(props.id);
+// @ts-expect-error TS(7006): Parameter 'productItem' implicitly has an 'any' ty... Remove this comment to see the full error message
+	const product = (appCtx as any).products.find((productItem) => productItem.id === props.id);
 
 	function toggleCartHandler() {
 		if (inCart) {
-			appCtx.removeCart(props.id);
+			(appCtx as any).removeCart(props.id);
 		} else {
-			appCtx.addCart(product);
+			(appCtx as any).addCart(product);
 		}
 	}
 
 	return (
+// @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
 		<ListItemContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 			<Card>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 				<ImageContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 					<img src={product.image} alt={product.title} />
 				</ImageContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 				<ContentContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 					<h3>{product.name}</h3>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 					<div>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 						<strong>Quality </strong>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 						<span>{product.quality}</span>
 					</div>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 					<div>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 						<strong>Days left </strong>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 						<span>{product.sellIn}</span>
 					</div>
 				</ContentContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 				<ActionsContainer>
+{/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
 					<button onClick={toggleCartHandler}>{inCart ? 'Remove from Cart' : 'Add to cart'}</button>
 				</ActionsContainer>
 			</Card>

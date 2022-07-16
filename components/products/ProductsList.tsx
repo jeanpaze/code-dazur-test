@@ -1,7 +1,9 @@
-import styled from '@emotion/styled';
 import { Fragment } from 'react';
-import ProductItem from './ProductItem';
+
+import styled from '@emotion/styled';
 import { motion, Variants } from 'framer-motion';
+
+import ProductItem from './ProductItem';
 
 const ListContainer = styled(motion.ul)`
 	list-style: none;

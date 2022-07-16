@@ -1,6 +1,7 @@
+import { Global, css } from '@emotion/react';
+
 import Layout from '../components/layout/Layout';
 import { AppContextProvider } from '../store/AppContext';
-import { Global, css } from '@emotion/react';
 
 const GlobalStyles = css`
 	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;700&display=swap');

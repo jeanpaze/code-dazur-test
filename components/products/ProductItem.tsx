@@ -1,9 +1,11 @@
-import styled from '@emotion/styled';
 import { useContext } from 'react';
+
+import styled from '@emotion/styled';
+import { motion, Variants } from 'framer-motion';
+
 import AppContext from '../../store/AppContext';
 import Card from '../ui/Card';
 import { ItemExtra } from './UpdateProducts';
-import { motion, Variants } from 'framer-motion';
 import THEME from '../../constants/theme';
 
 const ListItemContainer = styled.li`

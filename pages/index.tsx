@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { useContext, useEffect, useState } from 'react';
-import AppContext from '../store/AppContext';
 import { Fragment } from 'react';
+
 import { MongoClient } from 'mongodb';
+
+import AppContext from '../store/AppContext';
 import ProductsPage from '../components/products/ProductsPage';
 
 const HomePage = (props) => {

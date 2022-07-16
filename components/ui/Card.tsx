@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import THEME from '../../constants/theme';
 
 const CardContainer = styled.div`

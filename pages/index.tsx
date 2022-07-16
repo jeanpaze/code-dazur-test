@@ -40,8 +40,6 @@ export async function getStaticProps() {
 
 	client.close();
 
-	console.log(products);
-
 	return {
 		props: {
 			products: products.map((product) => ({
@@ -53,7 +51,7 @@ export async function getStaticProps() {
 				image: product.image,
 			})),
 		},
-		revalidate: 10,
+		revalidate: 1,
 	};
 }
 

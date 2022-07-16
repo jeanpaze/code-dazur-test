@@ -8,7 +8,7 @@ import { GildedRose, ItemExtra } from '../../components/products/UpdateProducts'
 import { CgShoppingCart } from 'react-icons/cg';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Colors from '../layout/Theme';
+import THEME from '../../constants/theme';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -21,7 +21,7 @@ const HeaderContainer = styled.header`
 	align-items: center;
 	justify-content: space-between;
 	white-space: nowrap;
-	background-color: ${Colors.fullContrast};
+	background-color: ${THEME.fullContrast};
 	padding: 0 10%;
 `;
 
@@ -41,7 +41,7 @@ const NavigationContainer = styled.nav`
 	& a {
 		text-decoration: none;
 		font-size: 1.5rem;
-		color: ${Colors.midContrast};
+		color: ${THEME.midContrast};
 	}
 
 	& a:hover,
@@ -50,17 +50,17 @@ const NavigationContainer = styled.nav`
 	& .resetButtonStyle:hover,
 	& .resetButtonStyle:active,
 	& .resetButtonStyle.active {
-		color: ${Colors.highlight};
+		color: ${THEME.highlight};
 
 		& svg {
-			color: ${Colors.highlight};
+			color: ${THEME.highlight};
 		}
 	}
 
 	& .resetButtonStyle {
 		cursor: pointer;
 		font-size: 1.5rem;
-		color: ${Colors.midContrast};
+		color: ${THEME.midContrast};
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -72,7 +72,7 @@ const NavigationContainer = styled.nav`
 		outline: none;
 
 		& svg {
-			color: ${Colors.midContrast};
+			color: ${THEME.midContrast};
 		}
 	}
 `;
@@ -85,7 +85,7 @@ const CartButtonContainer = styled.button`
 	& svg {
 		width: 27px;
 		height: 27px;
-		color: ${Colors.highlight};
+		color: ${THEME.highlight};
 	}
 `;
 
@@ -94,14 +94,14 @@ const BadgeContainer = styled.div`
 	height: 15px;
 	margin-left: -8px;
 	border-radius: 100%;
-	background-color: ${Colors.badge};
+	background-color: ${THEME.badge};
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
 	& strong {
-		color: ${Colors.highlight};
+		color: ${THEME.highlight};
 		font-size: 0.5rem;
 	}
 `;
@@ -118,8 +118,8 @@ const MainNavigation = () => {
 		</button>
 	));
 
-	const daysBetween = (startDate, endDate) => {
-		return Math.round((endDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000));
+	const daysBetween = (startDateValue, endDateValue) => {
+		return Math.round((endDateValue.getTime() - startDateValue.getTime()) / (24 * 60 * 60 * 1000));
 	};
 
 	const onChangeDateHandler = (date) => {
@@ -142,7 +142,7 @@ const MainNavigation = () => {
 
 	let setMenuContent;
 
-	if (router.asPath == '/cart') {
+	if (router.asPath == '/cart' || router.asPath == '/add-product') {
 		setMenuContent = <Link href="/">Products</Link>;
 	} else {
 		setMenuContent = <DatePicker selected={startDate} onChange={onChangeDateHandler} shouldCloseOnSelect={false} minDate={subDays(new Date(), 0)} customInput={<DateCustomInput />} />;

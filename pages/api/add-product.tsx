@@ -13,7 +13,7 @@ async function handler(req, res) {
 		const productsCollection = db.collection('products');
 
 		const result = await productsCollection.insertOne(data);
-		console.log(result);
+		console.log('[ ADD PRODUCT ] | result: ', result);
 
 		client.close();
 

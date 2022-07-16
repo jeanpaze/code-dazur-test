@@ -4,7 +4,7 @@ import AppContext from '../../store/AppContext';
 import Card from '../ui/Card';
 import { ItemExtra } from './UpdateProducts';
 import { motion, Variants } from 'framer-motion';
-import Colors from '../layout/Theme';
+import THEME from '../../constants/theme';
 
 const ListItemContainer = styled.li`
 	margin: 0.55rem 0;
@@ -30,7 +30,7 @@ const ContentContainer = styled(motion.div)`
 
 	& h3 {
 		font-size: 1.25rem;
-		color: ${Colors.textContent};
+		color: ${THEME.textContent};
 		line-height: 1.3em;
 	}
 
@@ -46,8 +46,8 @@ const ActionsContainer = styled(motion.div)`
 	& button {
 		font: inherit;
 		cursor: pointer;
-		color: ${Colors.fullContrast};
-		border: 1px solid ${Colors.fullContrast};
+		color: ${THEME.fullContrast};
+		border: 1px solid ${THEME.fullContrast};
 		background-color: transparent;
 		padding: 0.5rem 1.5rem;
 		border-radius: 4px;
@@ -55,7 +55,7 @@ const ActionsContainer = styled(motion.div)`
 
 	& button:hover,
 	& button:active {
-		background-color: ${Colors.midContrast};
+		background-color: ${THEME.midContrast};
 	}
 `;
 

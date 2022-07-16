@@ -1,4 +1,4 @@
-const Colors = {
+export const THEME = {
 	fullContrast: '#063970',
 	midContrast: '#abdbe3',
 	highlight: 'white',
@@ -6,4 +6,4 @@ const Colors = {
 	badge: 'red',
 };
 
-export default Colors;
+export default THEME;

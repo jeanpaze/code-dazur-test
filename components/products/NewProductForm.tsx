@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import Card from '../ui/Card';
-import Colors from '../layout/Theme';
+import THEME from '../../constants/theme';
 
 const FormContainer = styled.form`
 	padding: 1rem;
@@ -34,8 +34,8 @@ const ActionsContainer = styled.div`
 	& button {
 		font: inherit;
 		cursor: pointer;
-		color: ${Colors.fullContrast};
-		border: 1px solid ${Colors.fullContrast};
+		color: ${THEME.fullContrast};
+		border: 1px solid ${THEME.fullContrast};
 		background-color: transparent;
 		padding: 0.5rem 1.5rem;
 		border-radius: 4px;
@@ -43,7 +43,7 @@ const ActionsContainer = styled.div`
 
 	& button:hover,
 	& button:active {
-		background-color: ${Colors.midContrast};
+		background-color: ${THEME.midContrast};
 	}
 `;
 
@@ -64,8 +64,6 @@ function NewProductForm(props) {
 			type: typeInput,
 			image: imageInput,
 		};
-
-		console.log(productData);
 
 		props.onAddProduct(productData);
 	}
@@ -102,6 +100,3 @@ function NewProductForm(props) {
 }
 
 export default NewProductForm;
-function ref(ref: any, arg1: () => { changeValue: (newValue: any) => void }) {
-	throw new Error('Function not implemented.');
-}

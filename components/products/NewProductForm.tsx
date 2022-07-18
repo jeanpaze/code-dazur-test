@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -50,21 +50,21 @@ const ActionsContainer = styled.div`
 `;
 
 function NewProductForm(props) {
-	const [nameInput, setNameInput] = useState('');
-	const [sellInInput, setSellInInput] = useState('');
-	const [qualityInput, setQualityInput] = useState('');
-	const [typeInput, setTypeInput] = useState('');
-	const [imageInput, setImageInput] = useState('');
+	const nameRef = useRef(null);
+	const sellInRef = useRef(null);
+	const qualityRef = useRef(null);
+	const typeRef = useRef(null);
+	const imageRef = useRef(null);
 
 	function submitHandler(event) {
 		event.preventDefault();
 
 		const productData = {
-			name: nameInput,
-			sellIn: sellInInput,
-			quality: qualityInput,
-			type: typeInput,
-			image: imageInput,
+			name: nameRef.current.value,
+			sellIn: sellInRef.current.value,
+			quality: qualityRef.current.value,
+			type: typeRef.current.value,
+			image: imageRef.current.value,
 		};
 
 		props.onAddProduct(productData);
@@ -75,23 +75,23 @@ function NewProductForm(props) {
 			<FormContainer onSubmit={submitHandler}>
 				<ControlContainer>
 					<label htmlFor="name">Product Name</label>
-					<input type="text" required id="name" onChange={(event) => setNameInput(event.target.value)} value={nameInput} />
+					<input type="text" required id="name" ref={nameRef} />
 				</ControlContainer>
 				<ControlContainer>
 					<label htmlFor="sellIn">Sell In</label>
-					<input type="text" required id="sellIn" onChange={(event) => setSellInInput(event.target.value)} value={sellInInput} />
+					<input type="text" required id="sellIn" ref={sellInRef} />
 				</ControlContainer>
 				<ControlContainer>
 					<label htmlFor="quality">Quality</label>
-					<input type="text" required id="quality" onChange={(event) => setQualityInput(event.target.value)} value={qualityInput} />
+					<input type="text" required id="quality" ref={qualityRef} />
 				</ControlContainer>
 				<ControlContainer>
 					<label htmlFor="type">Type</label>
-					<input type="text" required id="type" onChange={(event) => setTypeInput(event.target.value)} value={typeInput} />
+					<input type="text" required id="type" ref={typeRef} />
 				</ControlContainer>
 				<ControlContainer>
 					<label htmlFor="image">Product Image</label>
-					<input type="text" required id="image" onChange={(event) => setImageInput(event.target.value)} value={imageInput} />
+					<input type="text" required id="image" ref={imageRef} />
 				</ControlContainer>
 				<ActionsContainer>
 					<button>Add Product</button>

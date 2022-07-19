@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useContext, useEffect, useState } from 'react';
 import { Fragment } from 'react';
+import { GetStaticProps } from 'next';
 
 import { MongoClient } from 'mongodb';
 
@@ -31,7 +32,7 @@ const HomePage = (props) => {
 	);
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	// fetch data from an API
 	const client = await MongoClient.connect(process.env.MONGOLAB_URI);
 	const db = client.db();

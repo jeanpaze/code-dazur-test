@@ -16,7 +16,9 @@ export class ItemExtra extends Item {
 	image: string;
 	qualityRaw: number;
 
-	super(id, type, image, qualityRaw) {
+	constructor(name, sellIn, quality, id, type, image, qualityRaw) {
+		super(name, sellIn, quality);
+
 		this.id = id;
 		this.type = type;
 		this.image = image;

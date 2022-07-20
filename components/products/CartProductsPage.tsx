@@ -6,7 +6,7 @@ import ProductsList from './ProductsList';
 const CartProductsPage = () => {
 	const appCtx = useContext(AppContext);
 
-	const content = appCtx.totalCart === 0 ? <p>Your cart is empty.</p> : <ProductsList products={appCtx.cartProducts} />;
+	const content = appCtx.totalCart === 0 ? <p>Your cart is empty.</p> : <ProductsList isCart />;
 
 	return (
 		<section>

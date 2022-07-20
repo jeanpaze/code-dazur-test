@@ -1,9 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 
 import styled from '@emotion/styled';
 import { motion, Variants } from 'framer-motion';
 
 import ProductItem from './ProductItem';
+import AppContext from '../../store/AppContext';
 
 const ListContainer = styled(motion.ul)`
 	list-style: none;
@@ -36,10 +37,13 @@ const listVariants: Variants = {
 };
 
 const ProductsList = (props) => {
+	const appCtx = useContext(AppContext);
+	const productsList = props.isCart ? appCtx.cartProducts : appCtx.products;
+
 	return (
 		<Fragment>
 			<ListContainer variants={listVariants} initial="hidden" animate="show">
-				{props.products.map((product) => (
+				{productsList.map((product) => (
 					<ProductItem key={product.id} id={product.id} />
 				))}
 			</ListContainer>

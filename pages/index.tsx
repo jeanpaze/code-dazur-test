@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Fragment } from 'react';
 import { GetStaticProps } from 'next';
 
@@ -10,15 +10,10 @@ import ProductsPage from '../components/products/ProductsPage';
 
 const HomePage = (props) => {
 	const appCtx = useContext(AppContext);
-	const [loadedProducts, setLoadedProducts] = useState([]);
 
 	useEffect(() => {
-		setLoadedProducts(props.products);
-	}, [props.products]);
-
-	useEffect(() => {
-		appCtx.products.length == 0 && appCtx.setProducts(loadedProducts);
-	}, [appCtx, loadedProducts]);
+		appCtx.products.length == 0 && appCtx.setProducts(props.products);
+	}, [appCtx, props.products]);
 
 	return (
 		<Fragment>
@@ -27,7 +22,7 @@ const HomePage = (props) => {
 				<meta name="description" content="We buy and sell only the finest goods." />
 				<link rel="icon" href="/favicon.svg" />
 			</Head>
-			<ProductsPage products={appCtx.products} />
+			<ProductsPage />
 		</Fragment>
 	);
 };
@@ -56,6 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 		revalidate: 1,
 	};
-}
+};
 
 export default HomePage;

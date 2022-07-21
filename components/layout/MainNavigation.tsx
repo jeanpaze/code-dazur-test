@@ -113,12 +113,12 @@ const MainNavigation = () => {
 	const [startDate, setStartDate] = useState(new Date());
 	const router = useRouter();
 
-	// eslint-disable-next-line react/display-name
 	const DateCustomInput = forwardRef<HTMLButtonElement>((props: any, ref) => (
 		<button className="resetButtonStyle" onClick={props.onClick} ref={ref}>
 			Set Date
 		</button>
 	));
+	DateCustomInput.displayName = 'Date';
 
 	const daysBetween = (startDateValue, endDateValue) => {
 		return Math.round((endDateValue.getTime() - startDateValue.getTime()) / (24 * 60 * 60 * 1000));
